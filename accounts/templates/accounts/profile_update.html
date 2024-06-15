@@ -1,5 +1,16 @@
+{% extends 'escrowtz/base.html' %}
+
+{% block tittle%}Darshboard{% endblock %}
+
+{% block content %}
+<h2>Welcome to Profile update</h2>
+<p>Here you can update your profile </p>
+
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Update Profile</button>
 </form>
+
+{% endblock %}
+

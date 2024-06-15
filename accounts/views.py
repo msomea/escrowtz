@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from .forms import UserRegistrationForm, OTPVerificationForm, UserUpdateForm
-from .models import UserProfile, OTP
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegistrationForm, OTPVerificationForm, UserUpdateForm, LoginForm
+from .models import UserProfile
+from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
+def home(request):
+    return render(request, 'accounts/home.html')
 #User registration
 def register(request):
     if request.method == 'POST':
@@ -12,8 +15,8 @@ def register(request):
             user_profile = form.save()
             user_profile.generate_otp()
             return redirect('verify_otp',user_profile.id)
-        else:
-            form = UserRegistrationForm()
+    else:
+        form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
 
 #OTP verification
@@ -22,12 +25,24 @@ def verify_otp(request, user_profile_id):
     if request.method == 'POST':
         form = OTPVerificationForm(request.POST, user_profile=user_profile)
         if form.is_valid():
+            user_profile.is_verified = True
+            user_profile.save()
             return redirect('profile_update')
     else:
         form = OTPVerificationForm(user_profile=user_profile)
     return render(request, 'accounts/verify_otp.html', {'form': form})
 
+#Registered User login
+class CustomLoginView(LoginView):
+    form_class = LoginForm
+    template_name = 'accounts/login.html'
+    
+#User log out
+class CustomLogoutView(LogoutView):
+    next_page = 'accounts:home'
+
 #User profile update
+@login_required
 def profile_update(request):
     user_profile = request.user.userprofile
     if request.method == 'POST':
@@ -40,14 +55,15 @@ def profile_update(request):
     return render(request, 'accounts/profile_update.html', {'form':form})
 
 #other website render pages
+@login_required
 def user_dashboard(request):
-    return(request, 'accounts/dashboard.html')
+    return render(request, 'accounts/dashboard.html')
 
 def login(request):
-    return(request, 'accounts/login.html')
+    return render(request, 'accounts/login.html')
 
 def password_reset_confirm(request):
-    return(request, 'accounts/password_reset_confirm.html')
+    return render(request, 'accounts/password_reset_confirm.html')
 
 def password_reset(request):
-    return(request, 'accounts/password_reset.html')
+    return render(request, 'accounts/password_reset.html')

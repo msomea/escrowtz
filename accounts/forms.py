@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfile, OTP
+from django.contrib.auth.forms import AuthenticationForm
+from django.utils.translation import gettext_lazy as _
 
 #Registration using phone number
 class UserRegistrationForm(forms.ModelForm):
@@ -32,6 +34,18 @@ class OTPVerificationForm(forms.Form):
             raise forms.ValidationError("Invalid or expired OTP")
         return otp
 
+#User login
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        max_length=60,
+        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder':'Username'}),
+    )
+    password = forms.CharField(
+        label=_('Password'),
+        strip=False,
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
+    )
+    
 #User profile details update
 class UserUpdateForm(forms.ModelForm):
     phone_number = forms.CharField(max_length=10, disabled=True)
