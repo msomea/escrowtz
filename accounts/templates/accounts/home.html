@@ -2,7 +2,15 @@
 
 {% extends 'escrowtz/base.html' %}
 
-{% block tittle%}Darshboard{% endblock %}
+{% comment %} {% block tittle%}Home{% endblock %} {% endcomment %}
+
+<button onclick="toggleNav()">Toggle Navigation</button>
+<div id="jnav-links" style="display:none;">
+        <a href="{% url 'accounts:home' %}">Home</a>
+        <a href="{% url 'accounts:dashboard' %}">Dashboard</a>
+        <a href="{% url 'accounts:login' %}">Login</a>
+        <a href="{% url 'accounts:register' %}">Register</a>
+</div>
 
 {% block content %}
 <h2>Welcome to home</h2>

@@ -1,9 +1,20 @@
 <!-- app/templates/app/some_template.html -->
 {% extends 'escrowtz/base.html' %}
 
-{% block tittle%}Darshboard{% endblock %}
+{% comment %} {% block tittle%}Darshboard{% endblock %} {% endcomment %}
 
 {% block content %}
+
+<button onclick="toggleNav()">Toggle Navigation</button>
+<div id="nav-links" style="display:none;">
+        <a href="{% url 'accounts:home' %}">Home</a>
+        <a href="{% url 'accounts:dashboard' %}">Dashboard</a>
+        <a href="{% url 'accounts:login' %}">Login</a>
+        <a href="{% url 'accounts:register' %}">Register</a>
+</div>
+
 <h2>Welcome to user dashboard</h2>
 <p>Here you can update your profile, create new transration and more</p>
+
+
 {% endblock %}
