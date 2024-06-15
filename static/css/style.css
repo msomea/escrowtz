@@ -1,0 +1,13 @@
+/* Body style */
+body{
+    font-family: Arial, Sans-serif;
+    color:#0c0c0c;
+    background-color: antiquewhite;
+    overflow-x: hidden;
+}
+
+/* Header section */
+header{
+    background-color: #333;
+    overflow: hidden;
+}
