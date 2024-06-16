@@ -2,16 +2,20 @@
  
 {% extends 'escrowtz/base.html' %}
 
-{% comment %} {% block tittle%}Darshboard{% endblock %} {% endcomment %}
-
 {% block content %}
-<h2>Welcome to Profile update</h2>
-<p>Here you can update your profile </p>
-
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Verify OTP</button>
+<div class='container'>
+    <h2>Verify OTP</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class='form-group'>
+            {{ form.otp.label_tag }}
+            {{ form.otp }}
+            {{ form.otp.errors }}
+        <div>
+        <button type="submit">Verify OTP</button>
+</div>
+   
 </form>
 
 {% endblock %}

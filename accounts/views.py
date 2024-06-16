@@ -13,8 +13,11 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user_profile = form.save()
-            user_profile.generate_otp()
-            return redirect('verify_otp',user_profile.id)
+            #OTP verification will resume later
+            #user_profile.generate_otp()
+            #return redirect('verify_otp',user_profile.id)
+            login(request, user_profile.user)
+            return redirect('update_profile')
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -49,14 +52,14 @@ def profile_update(request):
         form = UserUpdateForm(request.POST, instance=user_profile)
         if  form.is_valid():
             form.save()
-            return redirect('user_dashboard')
+            return redirect('dashboard')
     else:
         form = UserUpdateForm(instance=user_profile)
     return render(request, 'accounts/profile_update.html', {'form':form})
 
 #other website render pages
 @login_required
-def user_dashboard(request):
+def dashboard(request):
     return render(request, 'accounts/dashboard.html')
 
 def login(request):

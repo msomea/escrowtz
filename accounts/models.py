@@ -12,9 +12,12 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     user_name = models.CharField(max_length=30, unique=True)
-    email = models.EmailField(null=True, blank=True)
-    address = models.TextField(null=False)
+    email = models.EmailField(null=True, blank=True, unique=True)
+    address = models.TextField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f'{self.firs_name} {self.last_name} {self.phone} {self.user_name} {self.email} {self.address} {self.created_at}'
     
     # Generate OTP and send it to the usre phone number
     def generate_otp(self):
@@ -34,3 +37,6 @@ class OTP(models.Model):
     
     def is_valid(self):
         return datetime.now() < self.expires_at
+    
+    def __str__(self):
+        return f'{self.otp} {self.created_at} {self.expires_at}'

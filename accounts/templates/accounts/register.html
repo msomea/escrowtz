@@ -2,16 +2,30 @@
  
 {% extends 'escrowtz/base.html' %}
 
-{% comment %} {% block tittle%}Darshboard{% endblock %} {% endcomment %}
-
 {% block content %}
-<h2>Welcome to Registrations</h2>
-<p>Prvide your phone number to receive OTP </p>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
-
+<div class='container'>
+    <h2>Welcome to Registrations</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class='form-group'>
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+            {{ form.phone_number.errors }}
+        <div>
+        <div class='form-group'>
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.password.errors }}
+        <div>
+        <div class='form-group'>
+            {{ form.password_confirm.label_tag }}
+            {{ form.password_confirm }}
+            {{ form.password_confirm.errors }}
+        <div>
+        <button type="submit">Register</button>
+    </form>
+</div>
+<p></p>
 {% endblock %}

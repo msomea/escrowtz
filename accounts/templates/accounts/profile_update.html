@@ -2,17 +2,55 @@
  
 {% extends 'escrowtz/base.html' %}
 
-{% comment %} {% block tittle%}Darshboard{% endblock %} {% endcomment %}
-
 {% block content %}
-<h2>Welcome to Profile update</h2>
-<p>Here you can update your profile </p>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Profile</button>
-</form>
-
+<div class='container'>
+    <h2>Update your Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+            {{ form.phone_number.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.user_name.label_tag }}
+            {{ form.user_name }}
+            {{ form.user_name.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.address.label_tag }}
+            {{ form.address }}
+            {{ form.address.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.password_confirm.label_tag }}
+            {{ form.password_confirm }}
+            {{ form.password_confirm.errors }}
+        </div>
+        <button type="submit">Update</button>
+    </form>
+</div>
 {% endblock %}
 

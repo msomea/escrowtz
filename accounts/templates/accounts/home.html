@@ -2,17 +2,86 @@
 
 {% extends 'escrowtz/base.html' %}
 
-{% comment %} {% block tittle%}Home{% endblock %} {% endcomment %}
-
-<button onclick="toggleNav()">Toggle Navigation</button>
-<div id="jnav-links" style="display:none;">
-        <a href="{% url 'accounts:home' %}">Home</a>
-        <a href="{% url 'accounts:dashboard' %}">Dashboard</a>
-        <a href="{% url 'accounts:login' %}">Login</a>
-        <a href="{% url 'accounts:register' %}">Register</a>
-</div>
-
 {% block content %}
-<h2>Welcome to home</h2>
-<p>Here you can update your profile, create new transration and more</p>
+
+<h3>Secure Your Transactions with Confidence</h3>
+<h1>WELCOME TO EscrowTZ</h1>
+<p> At EscrowTZ, we provide a secure, decentralized,
+    and cost-effective escrow service to ensure your 
+    transactions are smooth and trustworthy. Whether you're buying, 
+    selling, or exchanging goods and services, our platform guarantees 
+    peace of mind for both parties involved..
+</p>
+<div class='container'>
+    <a href="{% url 'accounts:register' %}" class='btn'>Start the Journey!</a>
+    <a href="{% url 'accounts:login' %}" class='btn'>Are you on the load?</a>
+</div>
+<div>
+    <h1>HOW DOES IT WORKS: 5 Key Steps</h1>
+    <p>
+        At EscrowTZ, we make the process of securing your transactions simple and efficient. 
+        Our platform is designed to protect both buyers and sellers, ensuring that funds are 
+        handled safely and that all conditions of the transaction are met before any money changes 
+        hands. Here’s a step-by-step guide to how our escrow service works:
+    </p>
+</div>
+<div>
+    <h2> 1. Agreement and Escrow Account Setup </h2>
+    <p>
+        <b>Initial Agreement:</b> The buyer and seller discuss and agree on the 
+        terms of the transaction, including the price, delivery timeline, and 
+        specific conditions that must be met.<br>
+        <b>Account Creation:</b> An escrow account is created on the EscrowTZ
+         platform. This account will hold the funds securely until all 
+         conditions of the agreement are met.<br>
+        <b>Escrow Instructions:</b> Both parties provide detailed instructions to EscrowTZ,
+        ensuring clear understanding and expectations
+    </p>
+    
+    <h2> 2. Depositing Funds </h2>
+    <p>
+        <b>Buyer Deposit:</b> The buyer deposits the agreed-upon funds into the escrow account
+        using a secure payment method. EscrowTZ supports various payment options for convenience.<br>
+        <b>Confirmation:</b> EscrowTZ verifies the receipt of funds and notifies both parties.
+        This step ensures that the funds are available and reserved for the transaction, 
+        providing assurance to the seller.
+
+    <h2> 3. Fulfillment of Conditions</h2>
+    <p>
+        <b>Seller Delivers:</b> The seller fulfills their part of the agreement by delivering
+        the goods or services to the buyer. This might include shipping a product, 
+        providing a service, or delivering digital assets.<br>
+        <b>Inspection Period:</b> The buyer is given a specified period to inspect the goods or 
+        services. During this time, the buyer checks that all conditions and quality 
+        standards are met as per the agreement.
+    </p>
+
+    <h2> 4. Verification and Approval</h2>
+    <p>
+    </b>
+        <b>Buyer Approval:</b> If the buyer is satisfied with the delivery, they inform EscrowTZ
+        to release the funds. This step confirms that the transaction terms have been met.<br>
+        <b>Dispute Resolution:</b> If there are any issues or disputes, EscrowTZ steps in to mediate.
+        The escrow agent reviews the terms, conditions, and evidence provided by both parties 
+        to resolve the dispute fairly and impartially.
+    </p>
+
+    <h2> 5. Release of Funds</h2>
+    <p>
+        <b>Funds Release:</b> Once the buyer’s approval is received, EscrowTZ releases the funds to the seller’s 
+        account. This ensures that the seller is paid promptly for fulfilling their part of the agreement.<br>
+        <b>Transaction Closure:</b> Both parties receive a confirmation of the completed transaction from EscrowTZ. 
+        This includes a detailed record of the transaction for future reference.
+    </p>
+    <hr class='bottom-line'>
+    <div class='Features'>
+        <h1>Features of EscrowTZ</h1>
+        <h2>Decentralization</h2>
+        <div class='img'>
+            <img src="" alt="">
+        </div>
+    </div>
+    <p>Built on a decentralized platform to ensure transparency and reliability.</p>
+
+</div>
 {% endblock %}

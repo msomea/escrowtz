@@ -5,7 +5,7 @@ from .views import CustomLoginView, CustomLogoutView
 app_name = 'accounts'
 
 urlpatterns = [
-    path('dashboard/', views.user_dashboard, name='dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
     path('', views.home, name='home'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
