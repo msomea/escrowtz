@@ -2,6 +2,8 @@
 
 {% extends 'escrowtz/base.html' %}
 
+<tittle>{% block tittle %}EscrowTZ{% endblock %}</tittle>
+
 {% block content %}
 
 <h3>Secure Your Transactions with Confidence</h3>
@@ -78,10 +80,29 @@
         <h1>Features of EscrowTZ</h1>
         <h2>Decentralization</h2>
         <div class='img'>
-            <img src="" alt="">
+            <img src="{{MEDIA_URL}}/blockchain.png" alt="blockchain">
         </div>
+        <p>Built on a decentralized platform to ensure transparency and reliability.</p>
+
+        <h2>Security</h2>
+        <div class='img'>
+            <img src="{{MEDIA_URL}}/secure.png" alt="security">
+        </div>
+        <p>Advanced encryption and security protocols to protect your funds and data.</p>
+
+        <h2>Cost Effective</h2>
+        <div class='img'>
+            <img src="{{MEDIA_URL}}/cost_effective.png" alt="cost effective">
+        </div>
+        <p>Competitive fees that save you money on every transaction.</p>
+
+        <h2>User-Friendly Dashboard</h2>
+        <div class='img'>
+            <img src="{{MEDIA_URL}}/dashboard.png" alt="darshboard">
+        </div>
+        <p>Intuitive dashboard to manage and track all your transactions seamlessly.</p>
     </div>
-    <p>Built on a decentralized platform to ensure transparency and reliability.</p>
+    
 
 </div>
 {% endblock %}

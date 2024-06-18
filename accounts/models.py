@@ -8,21 +8,22 @@ from datetime import datetime, timedelta
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_verified =models.BooleanField(default=False)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=15)
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
-    user_name = models.CharField(max_length=30, unique=True)
-    email = models.EmailField(null=True, blank=True, unique=True)
+    user_name = models.CharField(max_length=60, unique=True)
+    email = models.EmailField(null=True, blank=True)
     address = models.TextField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f'{self.firs_name} {self.last_name} {self.phone} {self.user_name} {self.email} {self.address} {self.created_at}'
+        return f'{self.first_name} {self.last_name} {self.phone_number} {self.user_name} {self.email} {self.address} {self.created_at}'
     
     # Generate OTP and send it to the usre phone number
     def generate_otp(self):
-        otp_code = ''.join([str(random.randint(0, 9)) for _ in range(6)])
-        OTP.objects.create(user_profile=self, otp=otp_code, expires_at=datetime.now() + timedelta(minutes=5))
+        otp = ''.join([str(random.randint(0, 9)) for _ in range(6)])
+        OTP.objects.create(user_profile=self, otp=otp, expires_at=datetime.now() + timedelta(minutes=5))
+        return otp
         # To send the OTP to the user's phone number?
         # Implementation of the actual SMS sending logic here
         # For example, using Twilio

@@ -9,6 +9,10 @@ from django.core.validators import RegexValidator
 phone_regex = RegexValidator(regex=r'^\+\d{12}$', message="Phone number must be entered in the format: '+255123456789'.")
 
 class UserRegistrationForm(forms.ModelForm):
+    user_name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'User Name'}),
+    )
     phone_number = forms.CharField(
         max_length=15,
         validators=[phone_regex],
@@ -36,7 +40,7 @@ class UserRegistrationForm(forms.ModelForm):
         
     def save(self, commit=True):
         user_profile = super().save(commit=False)
-        user = User.objects.create_user(username=self.cleaned_data['phone_number'], password=self.cleaned_data['password'])
+        user = User.objects.create_user(username=self.cleaned_data['user_name'], password=self.cleaned_data['password'])
         user_profile.user = user
         if commit:
             user_profile.save()

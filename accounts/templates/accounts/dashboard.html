@@ -1,6 +1,8 @@
 <!-- app/templates/app/some_template.html -->
 {% extends 'escrowtz/base.html' %}
 
+<tittle>{% block tittle %}Dashboard{% endblock %}</tittle>
+
 {% block content %}
 
 <h2>Welcome to user dashboard, {{user.username}} </h2>
@@ -8,6 +10,9 @@
 <div class='container'>
     <a href="{% url 'accounts:profile_update' %}" class='btn'>Update Profile</a>
     <a href="{% url 'accounts:login' %}" class='btn'>Start Transaction</a>
+    <a href="{% url 'accounts:logout' %}" class='btn'>Logout</a>
+   
+
 </div>
 
 {% endblock %}

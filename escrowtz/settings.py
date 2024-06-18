@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'accounts',
     'escrow',
 ]
-
+ # Redirect 
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'accounts:dashboard'
+LOGOUT_REDIRECT_URL = 'accounts:home' 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,13 +60,12 @@ STATIC_URL = "/static/"
 
 # Static directory
 STATICFILES_DIRS = [
-    # BASE_DIR / "static",
-    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / "static",
 ]
 
 # Media urls for user upload files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Directory where Django will collect static files (for production)
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -134,8 +135,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

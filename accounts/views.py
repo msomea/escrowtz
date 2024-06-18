@@ -14,10 +14,11 @@ def register(request):
         if form.is_valid():
             user_profile = form.save()
             #OTP verification will resume later
-            #user_profile.generate_otp()
-            #return redirect('verify_otp',user_profile.id)
-            login(request, user_profile.user)
-            return redirect('update_profile')
+            user_profile.generate_otp()
+            #return render(request, 'accounts/verify_otp.html',user_profile.id)
+            #login(request, user_profile.user)
+            #return redirect('accounts/profile_update')
+            return render(request, 'accounts/verify_otp.html', {'form': form})
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -30,7 +31,7 @@ def verify_otp(request, user_profile_id):
         if form.is_valid():
             user_profile.is_verified = True
             user_profile.save()
-            return redirect('profile_update')
+            return render(request, 'accounts/profile_update', {'form': form})
     else:
         form = OTPVerificationForm(user_profile=user_profile)
     return render(request, 'accounts/verify_otp.html', {'form': form})
@@ -43,6 +44,14 @@ class CustomLoginView(LoginView):
 #User log out
 class CustomLogoutView(LogoutView):
     next_page = 'accounts:home'
+    
+    def get_next_page(self):
+        next_page = super().get_next_page()
+        return next_page
+
+    def dispach(self, request, *args, **kwargs):
+        response = super().dispatch(self, request, *args, **kwargs)
+        return response
 
 #User profile update
 @login_required
@@ -52,7 +61,7 @@ def profile_update(request):
         form = UserUpdateForm(request.POST, instance=user_profile)
         if  form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return render(request, 'accounts/dashboard.html',)
     else:
         form = UserUpdateForm(instance=user_profile)
     return render(request, 'accounts/profile_update.html', {'form':form})
@@ -64,6 +73,9 @@ def dashboard(request):
 
 def login(request):
     return render(request, 'accounts/login.html')
+
+def logout(request):
+    return render(request, 'accounts/logout.html')
 
 def password_reset_confirm(request):
     return render(request, 'accounts/password_reset_confirm.html')
