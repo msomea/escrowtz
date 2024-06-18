@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class='container'>
-    <h2>Verify OTP: {{user_profile.otp}} </h2>
+    <h2>Verify OTP: {{ otp }} </h2>
     <form method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}

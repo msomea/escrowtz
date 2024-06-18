@@ -4,8 +4,13 @@ from .models import UserProfile, OTP
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
+from datetime import datetime, timedelta
+from django.utils import timezone
+import random, string
 
-#Registration using phone number
+def generate_otp():
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=6))
+
 phone_regex = RegexValidator(regex=r'^\+\d{12}$', message="Phone number must be entered in the format: '+255123456789'.")
 
 class UserRegistrationForm(forms.ModelForm):
@@ -16,42 +21,42 @@ class UserRegistrationForm(forms.ModelForm):
     phone_number = forms.CharField(
         max_length=15,
         validators=[phone_regex],
-        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder':'+255123456789'}),
+        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder': '+255123456789'}),
     )
     password = forms.CharField(
         min_length=8,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
-    )
+    )  
     password_confirm = forms.CharField(
         min_length=8,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}),
     )
     class Meta:
         model = UserProfile
-        fields = ['phone_number']
-        
+        fields = ['user_name', 'phone_number', 'password', 'password_confirm']
+
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         password_confirm = cleaned_data.get('password_confirm')
-        
+
         if password and password_confirm and password != password_confirm:
-            raise forms.ValidationError('Password do not match')
-        
+            raise forms.ValidationError('Passwords do not match')
+
     def save(self, commit=True):
         user_profile = super().save(commit=False)
         user = User.objects.create_user(username=self.cleaned_data['user_name'], password=self.cleaned_data['password'])
         user_profile.user = user
         if commit:
             user_profile.save()
-            user_profile.generate_otp()
+            otp_code = generate_otp()
+            OTP.objects.create(user_profile=user_profile, otp=otp_code, expires_at=timezone.now() + timedelta(minutes=5))
         return user_profile
 
-#OTP verification form
 class OTPVerificationForm(forms.Form):
     otp = forms.CharField(
         max_length=6,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'OTP'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OTP'}),
     )
 
     def __init__(self, *args, **kwargs):
@@ -65,21 +70,18 @@ class OTPVerificationForm(forms.Form):
             raise forms.ValidationError("Invalid or expired OTP")
         return otp
 
-#User login
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder':'User Name'}),
+        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder': 'User Name'}),
     )
     password = forms.CharField(
         label=_('Password'),
         strip=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
     )
-    
-#User profile details update
+
 class UserUpdateForm(forms.ModelForm):
     phone_number = forms.CharField(max_length=15, disabled=True)
-    
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
     )
@@ -88,6 +90,7 @@ class UserUpdateForm(forms.ModelForm):
     )
     user_name = forms.CharField(
         required=True,
+        disabled=True,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'User Name'}),
     )
     email = forms.EmailField(
@@ -104,29 +107,31 @@ class UserUpdateForm(forms.ModelForm):
         required=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm New Password'}),
     )
+
     class Meta:
         model = UserProfile
-        fields = ['phone_number', 'first_name', 'last_name', 'user_name', 'email', 'address']
-        
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['phone_number'].initial = self.instance.phone_number
-        
+        fields = ['phone_number', 'first_name', 'last_name', 'user_name', 'email', 'address', 'password', 'password_confirm']
+
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         password_confirm = cleaned_data.get('password_confirm')
+
+        if password and password_confirm and password != password_confirm:
+            raise forms.ValidationError('Passwords do not match')
         
-        if password or password_confirm:
-            if password != password_confirm:
-                raise forms.ValidationError('Password do not match')
-            
+        # Ensure username and phone number are not changed
+        if 'user_name' in cleaned_data:
+            cleaned_data.pop('user_name')
+        if 'phone_number' in cleaned_data:
+            cleaned_data.pop('phone_number')
+
     def save(self, commit=True):
         user_profile = super().save(commit=False)
         user = user_profile.user
-        user.username = self.cleaned_data['user_name']
-        if self.cleaned_data['password']:
-            user.set_password(self.cleaned_data['password'])
+        password = self.cleaned_data.get('password')
+        if password:
+            user.set_password(password)
             user.save()
         if commit:
             user_profile.save()

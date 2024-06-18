@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import CustomLoginView, CustomLogoutView
+from .views import register, verify_otp, CustomLoginView, CustomLogoutView, profile_update, dashboard
 
 app_name = 'accounts'
 

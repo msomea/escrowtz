@@ -1,0 +1,80 @@
+<!-- app/templates/app/some_template.html -->
+ 
+{% extends 'escrowtz/base.html' %}
+
+<tittle>{% block tittle %}Verify OTP{% endblock %}</tittle>
+
+{% block content %}
+<div class="container">
+    <h1>Escrow Dashboard</h1>
+
+    <!-- User Information Section -->
+    <div class="section">
+        <h2>User Information</h2>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone Number:</strong> {{ user.userprofile.phone_number }}</p>
+        <p><strong>Address:</strong> {{ user.userprofile.address }}</p>
+        <!-- Add more user information fields as needed -->
+    </div>
+
+    <!-- Previous Transactions Section -->
+    <div class="section">
+        <h2>Previous Transactions</h2>
+        {% if previous_transactions %}
+            <ul>
+                {% for transaction in previous_transactions %}
+                    <li class="transaction-item">
+                        <p><strong>Transaction ID:</strong> {{ transaction.id }}</p>
+                        <p><strong>Amount:</strong> ${{ transaction.amount }}</p>
+                        <p><strong>Status:</strong> {{ transaction.status }}</p>
+                        <!-- Add more transaction details as needed -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No previous transactions found.</p>
+        {% endif %}
+    </div>
+
+    <!-- Current Transactions Section -->
+    <div class="section">
+        <h2>Current Transactions</h2>
+        {% if current_transactions %}
+            <ul>
+                {% for transaction in current_transactions %}
+                    <li class="transaction-item">
+                        <p><strong>Transaction ID:</strong> {{ transaction.id }}</p>
+                        <p><strong>Amount:</strong> ${{ transaction.amount }}</p>
+                        <p><strong>Status:</strong> {{ transaction.status }}</p>
+                        <!-- Add more transaction details as needed -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No current transactions found.</p>
+        {% endif %}
+    </div>
+
+    <!-- Disputes Section -->
+    <div class="section">
+        <h2>Disputes</h2>
+        {% if disputes %}
+            <ul>
+                {% for dispute in disputes %}
+                    <li class="transaction-item">
+                        <p><strong>Dispute ID:</strong> {{ dispute.id }}</p>
+                        <p><strong>Description:</strong> {{ dispute.description }}</p>
+                        <p><strong>Status:</strong> {{ dispute.status }}</p>
+                        <!-- Add more dispute details as needed -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No disputes found.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
