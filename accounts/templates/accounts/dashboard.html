@@ -1,4 +1,5 @@
-<!-- app/templates/app/some_template.html -->
+<!-- accounts/templates/accounts/dashboard.html -->
+
 {% extends 'escrowtz/base.html' %}
 
 <tittle>{% block tittle %}Dashboard{% endblock %}</tittle>
@@ -10,9 +11,8 @@
 <div class='container'>
     <a href="{% url 'accounts:profile_update' %}" class='btn'>Update Profile</a>
     <a href="{% url 'escrow:escrow_dashboard' %}" class='btn'>Start Transaction</a>
+    <a href="{% url 'accounts:password_reset' %}" class='btn'>Reset Password</a>
     <a href="{% url 'accounts:logout' %}" class='btn'>Logout</a>
-   
-
 </div>
 
 {% endblock %}

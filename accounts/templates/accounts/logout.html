@@ -1,0 +1,14 @@
+<!-- accounts/templates/accounts/logout.html -->
+{% extends 'escrowtz/base.html' %}
+
+<tittle>{% block tittle %}Logout{% endblock %}</tittle>
+
+{% block content %}
+
+<div class='container'>
+<h2>Loged Out</h2>
+<p> You have successfull <strong>loged out</strong>. See you soon!</p>
+<a href="{% url 'accounts:home' %}" class='btn'>Return Home</a>
+</div>
+
+{% endblock %}

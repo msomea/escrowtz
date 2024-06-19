@@ -1,4 +1,4 @@
-<!-- app/templates/app/some_template.html -->
+<!-- accounts/templates/accounts/register.html -->
  
 {% extends 'escrowtz/base.html' %}
 
@@ -33,6 +33,8 @@
         <div>
         <button type="submit">Register</button>
     </form>
+    <h2> Already having an accont?</h2>
+    <a href="{% url 'accounts:login' %}" class='btn'>Login</a>
 </div>
-<p></p>
+
 {% endblock %}

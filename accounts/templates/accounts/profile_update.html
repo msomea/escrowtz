@@ -1,6 +1,8 @@
-<!-- app/templates/app/some_template.html -->
+<!-- accounts/templates/accounts/profile_update.html -->
  
 {% extends 'escrowtz/base.html' %}
+
+<tittle>{% block tittle %}Profile Update{% endblock %}</tittle>
 
 {% block content %}
 
@@ -39,18 +41,9 @@
             {{ form.address }}
             {{ form.address.errors }}
         </div>
-        <div class="form-group">
-            {{ form.password.label_tag }}
-            {{ form.password }}
-            {{ form.password.errors }}
-        </div>
-        <div class="form-group">
-            {{ form.password_confirm.label_tag }}
-            {{ form.password_confirm }}
-            {{ form.password_confirm.errors }}
-        </div>
         <button type="submit">Update</button>
     </form>
 </div>
+
 {% endblock %}
 

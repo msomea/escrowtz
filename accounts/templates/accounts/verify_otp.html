@@ -1,10 +1,11 @@
-<!-- app/templates/app/some_template.html -->
- 
+<!-- accounts/templates/accounts/verify_otp.html -->
+
 {% extends 'escrowtz/base.html' %}
 
 <tittle>{% block tittle %}Verify OTP{% endblock %}</tittle>
 
 {% block content %}
+
 <div class='container'>
     <h2>Verify OTP: {{ otp }} </h2>
     <form method="post">
