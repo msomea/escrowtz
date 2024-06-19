@@ -1,10 +1,11 @@
-<!-- app/templates/app/some_template.html -->
+<!-- escrow/templates/escrow/escrow_dashboard.html -->
  
 {% extends 'escrowtz/base.html' %}
 
-<tittle>{% block tittle %}Verify OTP{% endblock %}</tittle>
+<tittle>{% block tittle %}Escrow Dashboard{% endblock %}</tittle>
 
 {% block content %}
+
 <div class="container">
     <h1>Escrow Dashboard</h1>
 
@@ -17,6 +18,8 @@
         <p><strong>Address:</strong> {{ user.userprofile.address }}</p>
         <!-- Add more user information fields as needed -->
     </div>
+
+    <a href="{% url 'escrow:create_escrow' %}" class='btn'>Create New Transaction</a>
 
     <!-- Previous Transactions Section -->
     <div class="section">

@@ -1,0 +1,20 @@
+<!-- escrow/templates/escrow/escrow_details.html -->
+ 
+{% extends 'escrowtz/base.html' %}
+
+<tittle>{% block tittle %}Escrow Details{% endblock %}</tittle>
+
+{% block content %}
+
+<div class='container'>
+    <h2>Transaction Details</h2>
+    <p><strong>Sender:</strong> {{ transaction.sender.username }}</p>
+    <p><strong>Receiver:</strong> {{ transaction.receiver.username }}</p>
+    <p><strong>Amount:</strong> {{ transaction.amount }}</p>
+    <p><strong>Description:</strong> {{ transaction.description }}</p>
+    <p><strong>Status:</strong> {{ transaction.get_status_display }}</p>
+    <p><strong>Created on:</strong> {{ transaction.created_at }}</p>
+    <a href="{% url 'escrow:escrow_dashboard' %}" class='btn'>Escrow Dashboard</a>
+</div>
+
+{% endblock %}
