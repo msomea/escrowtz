@@ -2,10 +2,11 @@
 
 {% extends 'escrowtz/base.html' %}
 
+{% load static %}
+
 <tittle>{% block tittle %}EscrowTZ{% endblock %}</tittle>
 
 {% block content %}
-
 <h3>Secure Your Transactions with Confidence</h3>
 <h1>WELCOME TO EscrowTZ</h1>
 <p> At EscrowTZ, we provide a secure, decentralized,
@@ -29,6 +30,9 @@
 </div>
 <div>
     <h2> 1. Agreement and Escrow Account Setup </h2>
+    <div class='img'>
+        <img width='100px' height='100px' src="{% static 'accounts/blockchain.png' %}" alt="Blockchain">
+    </div>
     <p>
         <b>Initial Agreement:</b> The buyer and seller discuss and agree on the 
         terms of the transaction, including the price, delivery timeline, and 
@@ -41,6 +45,9 @@
     </p>
     
     <h2> 2. Depositing Funds </h2>
+    <div class='img'>
+        <img width='100px' height='100px' src="{% static 'accounts/blockchain.png' %}" alt="Blockchain">
+    </div>
     <p>
         <b>Buyer Deposit:</b> The buyer deposits the agreed-upon funds into the escrow account
         using a secure payment method. EscrowTZ supports various payment options for convenience.<br>
@@ -49,6 +56,9 @@
         providing assurance to the seller.
 
     <h2> 3. Fulfillment of Conditions</h2>
+    <div class='img'>
+        <img width='100px' height='100px' src="{% static 'accounts/blockchain.png' %}" alt="Blockchain">
+    </div>
     <p>
         <b>Seller Delivers:</b> The seller fulfills their part of the agreement by delivering
         the goods or services to the buyer. This might include shipping a product, 
@@ -59,6 +69,9 @@
     </p>
 
     <h2> 4. Verification and Approval</h2>
+    <div class='img'>
+        <img width='100px' height='100px' src="{% static 'accounts/blockchain.png' %}" alt="Blockchain">
+    </div>
     <p>
     </b>
         <b>Buyer Approval:</b> If the buyer is satisfied with the delivery, they inform EscrowTZ
@@ -69,6 +82,9 @@
     </p>
 
     <h2> 5. Release of Funds</h2>
+    <div class='img'>
+        <img width='100px' height='100px' src="{% static 'accounts/blockchain.png' %}" alt="Blockchain">
+    </div>
     <p>
         <b>Funds Release:</b> Once the buyer’s approval is received, EscrowTZ releases the funds to the seller’s 
         account. This ensures that the seller is paid promptly for fulfilling their part of the agreement.<br>
@@ -78,30 +94,30 @@
     <hr class='bottom-line'>
     <div class='Features'>
         <h1>Features of EscrowTZ</h1>
+
         <h2>Decentralization</h2>
         <div class='img'>
-            <img src="{{MEDIA_URL}}/blockchain.png" alt="blockchain">
+            <img width='100px' height='100px' src="{% static 'accounts/blockchain.png' %}" alt="Blockchain">
         </div>
         <p>Built on a decentralized platform to ensure transparency and reliability.</p>
-
+        
         <h2>Security</h2>
         <div class='img'>
-            <img src="{{MEDIA_URL}}/secure.png" alt="security">
+            <img width='100px' height='100px' src="{% static 'accounts/secure.png' %}" alt="Security">
         </div>
         <p>Advanced encryption and security protocols to protect your funds and data.</p>
 
         <h2>Cost Effective</h2>
         <div class='img'>
-            <img src="{{MEDIA_URL}}/cost_effective.png" alt="cost effective">
+            <img width='100px' height='100px' src="{% static 'accounts/cost_effective.png' %}" alt="Cost Effective">
         </div>
         <p>Competitive fees that save you money on every transaction.</p>
 
         <h2>User-Friendly Dashboard</h2>
         <div class='img'>
-            <img src="{{MEDIA_URL}}/dashboard.png" alt="darshboard">
+            <img width='100px' height='100px' src="{% static 'accounts/dashboard.png' %}" alt="Dashboard">
         </div>
         <p>Intuitive dashboard to manage and track all your transactions seamlessly.</p>
     </div>
 </div>
-
 {% endblock %}

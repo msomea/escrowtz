@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'escrow',
+
+    
 ]
  # Redirect 
 LOGIN_URL = 'accounts:login'
@@ -56,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 # Static directory
 STATICFILES_DIRS = [
