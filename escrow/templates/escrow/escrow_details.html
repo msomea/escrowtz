@@ -13,7 +13,7 @@
     <p><strong>Amount:</strong> {{ transaction.amount }}</p>
     <p><strong>Description:</strong> {{ transaction.description }}</p>
     <p><strong>Status:</strong> {{ transaction.get_status_display }}</p>
-    <p><strong>Created on:</strong> {{ transaction.created_at }}</p>
+    <p><strong>Created on:</strong> {{ transaction.created_at|date:"F j, Y, g:i a" }}</p>
     <a href="{% url 'escrow:escrow_dashboard' %}" class='btn'>Escrow Dashboard</a>
 </div>
 

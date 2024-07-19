@@ -264,3 +264,39 @@ form button:hover {
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
 }
+
+
+/* styles.css */
+.pagination {
+   margin: 20px 0;
+}
+
+.step-links {
+   text-align: center;
+}
+
+.step-links a {
+   margin: 0 5px;
+   padding: 5px 10px;
+   border: 1px solid #ffd700;
+   border-radius: 5px;
+   color: #ffd700;
+   text-decoration: none;
+   transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.step-links a:hover {
+   background-color: #ffd700;
+   color: #0c0c0c;
+   transform: scale(1.015);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.step-links .current {
+   margin: 0 5px;
+   padding: 5px 10px;
+   border: 1px solid #ffd700;
+   border-radius: 5px;
+   background-color: #ffd700;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
