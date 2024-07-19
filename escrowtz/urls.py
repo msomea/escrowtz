@@ -19,10 +19,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+#remove later for base test only
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls', namespace='accounts')),
-    path('', include('escrow.urls', namespace='escrow'))
+    path('', include('escrow.urls', namespace='escrow')),
+    
+    #for testing only the base
+    path('base/', views.base_view, name='base'),
    
 ]
 

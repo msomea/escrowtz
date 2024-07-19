@@ -18,7 +18,7 @@ main {
    align-items: center;
    justify-content: space-around;
    padding: 20px;
-   padding-bottom: 100px; /* Adjust for footer height */
+   padding-bottom: 100px; /* Footer height */
 }
 
 /* Layout and wrapper */
@@ -58,6 +58,10 @@ p {
 header {
    background-color: #333;
    overflow: hidden;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 1000;
 }
 
 .name {
@@ -82,7 +86,10 @@ nav a {
    text-decoration: none;
 }
 
-nav a:hover, .nav-toggle:hover, .active, .name:hover {
+nav a:hover, 
+.nav-toggle:hover,
+.active,
+.name:hover {
    cursor: pointer;
    text-shadow: 0px 0px 1px black;
    color: #ffd700;
@@ -125,10 +132,12 @@ footer {
    padding: 10px;
    position: fixed;
    bottom: 0;
+   cursor: pointer;
    width: 100%;
    margin-top: 20px;
    transition: background-color 0.3s, color 0.3s;
-}
+   z-index: 1000; /* Above other content*/
+} 
 
 footer:hover {
    background-color: #555;
@@ -161,46 +170,43 @@ footer:hover {
    background-color: #BE9E21;
 }
 
-/* Section */
-/* .section {
+/* img Section */
+.img-section {
    flex: 1;
    text-align: center;
    padding: 2rem;
-   margin:1rem 0;
+   margin-bottom: 1rem; /* Corrected margin syntax */
    border: 5px solid #ffd700; 
    border-radius: 5px; 
    transition: transform 0.3s ease; 
-
 }
 
-.section:hover {
+.img {
+   display: block;
+   margin: 0 auto;
+   border: 2px solid #ffd700;
+   border-radius: 5px;
+   padding: 5px;
+}
+
+.img img {
+   width: 100%;
+   height: auto;
+   border-radius: 5px;
+}
+
+.img-section h2 {
+   margin-top: 15px;
+   color: #0c0c0c;
+}
+
+.img-section p {
+   margin-top: 10px;
+}
+
+.img-section:hover {
    transform: scale(1.05);
 }
-
-.section img {
-   max-width: 100%;
-   height: auto;
-   margin-bottom: 1rem;
-   border: 3px solid gold;
-   border-radius: 5px;
-   padding: 10px;
-
-}
-
-.section-content {
-   max-width: 300px; 
-   margin: 0 auto;
-}
-
-.section-content h2 {
-   font-size: 1.8rem;
-   margin-bottom: 1rem;
-}
-
-.section-content p {
-   font-size: 1.2rem;
-   margin-bottom: 1rem;
-} */
 
 
 /* Forms */
