@@ -20,13 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9_n7m8@z%e1+4t!%#^^+buj@17k&7&g+s@jhsewq*won1w)gh_'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-9_n7m8@z%e1+4t!%#^^+buj@17k&7&g+s@jhsewq*won1w)gh_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yourdomain.com']
 
 # Application definition
 
@@ -65,12 +64,14 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+
 # Media urls for user upload files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR, 'media'
 
 # Directory where Django will collect static files (for production)
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 ROOT_URLCONF = 'escrowtz.urls'
 

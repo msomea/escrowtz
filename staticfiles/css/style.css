@@ -18,6 +18,7 @@ main {
    align-items: center;
    justify-content: space-around;
    padding: 20px;
+   padding-top: 50px;
    padding-bottom: 100px; /* Footer height */
 }
 
@@ -122,6 +123,10 @@ nav a:hover,
        display: block;
        float: right;
    }
+
+   .img-section {
+      width: 80%; /* Adjust width for smaller screens */
+  }
 }
 
 /* Footer */
@@ -132,7 +137,6 @@ footer {
    padding: 10px;
    position: fixed;
    bottom: 0;
-   cursor: pointer;
    width: 100%;
    margin-top: 20px;
    transition: background-color 0.3s, color 0.3s;
@@ -158,30 +162,30 @@ footer:hover {
    display: flex;
    flex-direction: column;
    margin-bottom: 15px;
+   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .bottom-line {
-   margin-top: 20px;
+   margin-top: 40px;
    margin-bottom: 40px;
    border: 0;
    border-top: 0px;
    height: 6px;
-   width: 30%;
+   width: 60%;
    background-color: #BE9E21;
 }
 
-/* img Section */
-.img-section {
-   flex: 1;
-   text-align: center;
-   padding: 2rem;
-   margin-bottom: 1rem; /* Corrected margin syntax */
-   border: 5px solid #ffd700; 
-   border-radius: 5px; 
-   transition: transform 0.3s ease; 
+
+.btn:hover {
+   color: #333;
+   background-color: #ffd700;
+   transform: scale(1.015);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
 }
 
-.img {
+/* All image */
+.img img {
    display: block;
    margin: 0 auto;
    border: 2px solid #ffd700;
@@ -189,10 +193,23 @@ footer:hover {
    padding: 5px;
 }
 
-.img img {
-   width: 100%;
-   height: auto;
-   border-radius: 5px;
+
+/* img Section */
+.img-section {
+   flex: 1;
+   text-align: center;
+   padding: 2rem;
+   margin: 0 auto;
+   margin-bottom: 1rem;
+   border: 5px solid #ffd700; 
+   border-radius: 5px; 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   width: 60%; 
+}
+
+.img-section .img img {
+   max-width: 100%; /* Make images responsive */
+   height: auto; /* Maintain aspect ratio */
 }
 
 .img-section h2 {
@@ -205,7 +222,9 @@ footer:hover {
 }
 
 .img-section:hover {
-   transform: scale(1.05);
+   transform: scale(1.015);
+   transition: transform 0.3s ease;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -235,10 +254,13 @@ form button {
    border: 2px solid #ffd700;
    background-color: transparent;
    cursor: pointer;
+   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-form button:hover,
-.btn:hover {
+form button:hover {
    color: #333;
    background-color: #ffd700;
+   transform: scale(1.015);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
 }

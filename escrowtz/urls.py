@@ -33,6 +33,7 @@ urlpatterns = [
 ]
 
 
+
 # Serve static files during development
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
