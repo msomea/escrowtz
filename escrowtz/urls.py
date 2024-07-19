@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls', namespace='accounts')),
     path('', include('escrow.urls', namespace='escrow')),
-    
+    path("select2/", include("django_select2.urls")),
     #for testing only the base
     path('base/', views.base_view, name='base'),
    

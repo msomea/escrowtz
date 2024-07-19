@@ -300,3 +300,14 @@ form button:hover {
    background-color: #ffd700;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+/* Escrow list */
+ul.no-decoration {
+   list-style-type: none; /* Removes bullets */
+   padding: 0; /* Removes default padding */
+   margin: 0; /* Removes default margin */
+}
+
+ul.no-decoration li {
+   margin-bottom: 15px; /* Adds some space between list items for better readability */
+}

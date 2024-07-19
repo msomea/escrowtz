@@ -9,7 +9,7 @@
 <div class="container">
     <h2>All Escrow</h2>
     {% if transactions %}
-        <ul>
+        <ul class='no-decoration'>
             {% for transaction in transactions %}
                 <li class="transaction-item">
                     <p><strong>Escrow ID:</strong> {{ transaction.id }}</p>
@@ -41,7 +41,7 @@
             {% endif %}
         </span>
     </div>
-    
+
     {% else %}
         <p>No transactions found.</p>
     {% endif %}
